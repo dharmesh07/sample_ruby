@@ -1,4 +1,16 @@
+<% content_for :top_content do %>
+  <div class="jumbotron">
+    <div class="container">
+      <h1>Welcome!</h1>
+      <p>Register to get started.</p>
+      <p>
+        <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      </p>
+    </div>
+  </div>
+<% end %>
 <%= @items.each do |item| %>
 	<h1><%= link_to item.title , edit_item_path(item) %></h1>
 	<h1><%= item.description%></h1>
 <% end %>
+<%= link_to "Create Item" , new_item_path %>

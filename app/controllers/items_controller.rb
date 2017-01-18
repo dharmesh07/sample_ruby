@@ -5,6 +5,7 @@ class ItemsController < ApplicationController
 	end
 
 	def edit
+		@item = Item.find(find_item)
 	end
 
 	def new
@@ -14,8 +15,9 @@ class ItemsController < ApplicationController
 	def create 
 		@item = Item.create(item_params)
 		if @item.save
+			UserMailer.welcome_email().deliver_later
 			flash[:notice] = "Successfully created item!"
-      		redirect_to item_path(@item)
+      		redirect_to items_path
       	else
       		flash[:alert] = "Error Creating Item"
       		render "new"
